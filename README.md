@@ -3,6 +3,16 @@
 This script converts CSV account reports from [Deutsche Kreditbank (DKB)](https://www.dkb.de) to
 [SUPA CSV](https://subsembly.com/supa.html) for [Banking4](https://subsembly.com/banking4.html)
  
+
+## Requirements
+
+To run this script you need Python 3 and [schwifty](https://pypi.org/project/schwifty/) .
+
+```
+pip install schwifty
+```
+
+
 ## How to run this script
 
 ```
