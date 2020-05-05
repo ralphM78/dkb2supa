@@ -38,7 +38,7 @@ parser = argparse.ArgumentParser(description='Convert DKB CSV into SUPA CSV.')
 parser.add_argument('-i', '--input', help="DKB CSV input file", type=argparse.FileType('r', encoding='iso-8859-1'), required=True, metavar="INPUTFILE")
 parser.add_argument('-o', '--output', help="SUPA formated CSV output file", type=argparse.FileType('w', encoding='utf-8'), required=True, metavar="OUTPUTFILE")
 parser.add_argument("--iban", help="Optionally your IBAN", metavar="DE820000000000")
-parser.add_argument("--cur", default="EUR", help="Optional Curreny. Default is EUR", metavar="EUR")
+parser.add_argument("--cur", default="EUR", help="Optional Currency. Default is EUR", metavar="EUR")
 args = parser.parse_args()
 
 

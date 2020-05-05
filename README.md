@@ -30,6 +30,6 @@ optional arguments:
                         SUPA formated CSV output file
   --iban DE820000000000
                         Optionally your IBAN
-  --cur EUR             Optional Curreny. Default is EUR
+  --cur EUR             Optional Currency. Default is EUR
 ```
 
