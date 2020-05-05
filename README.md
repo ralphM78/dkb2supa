@@ -33,3 +33,5 @@ optional arguments:
   --cur EUR             Optional Currency. Default is EUR
 ```
 
+-i / --input INPUTFILE and -o / --output OUTPUTFILE are required options.
+--iban and --cur are optional. Default for --cur is EUR.
