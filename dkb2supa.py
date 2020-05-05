@@ -35,24 +35,24 @@ from datetime import datetime
 from schwifty import IBAN
 
 parser = argparse.ArgumentParser(description='Convert DKB CSV into SUPA CSV.')
-parser.add_argument('-i', '--input', help="DKB CSV input file", type=argparse.FileType('r', encoding='iso-8859-1'), required=True, metavar="INPUTFILE")
-parser.add_argument('-o', '--output', help="SUPA formated CSV output file", type=argparse.FileType('w', encoding='utf-8'), required=True, metavar="OUTPUTFILE")
+parser.add_argument("-i", "--input", help="DKB CSV input file", type=argparse.FileType("r", encoding="iso-8859-1"), required=True, metavar="INPUTFILE")
+parser.add_argument("-o", "--output", help="SUPA formated CSV output file", type=argparse.FileType("w", encoding="utf-8"), required=True, metavar="OUTPUTFILE")
 parser.add_argument("--iban", help="Optionally your IBAN", metavar="DE820000000000")
 parser.add_argument("--cur", default="EUR", help="Optional Currency. Default is EUR", metavar="EUR")
 args = parser.parse_args()
 
 
-OwnrAcctIBAN = ''
-OwnrAcctBankCode = ''
-OwnrAcctBIC = ''
-OwnrAcctNo = ''
+OwnrAcctIBAN = ""
+OwnrAcctBankCode = ""
+OwnrAcctBIC = ""
+OwnrAcctNo = ""
 
 if args.iban:
     try:
         OwnrAcctIBAN = IBAN(args.iban)
     except ValueError as error:
         error_string = str(error)
-        print("ERROR in --iban argument: ",error_string)
+        print("ERROR in --iban argument: ", error_string)
         exit(1)
 
 if args.cur:
@@ -72,7 +72,7 @@ if OwnrAcctIBAN:
     print ("Used account number is: ", OwnrAcctNo)
 
 with args.input as CsvInputfile:
-    inputData = csv.reader(CsvInputfile, delimiter=';', quotechar='"')
+    inputData = csv.reader(CsvInputfile, delimiter=";", quotechar='"')
 
 # don't process first 7 lines
     for _ in range(7):
@@ -80,17 +80,17 @@ with args.input as CsvInputfile:
 
     with args.output as CsvOutputfile:
         outputData = csv.writer(CsvOutputfile, delimiter=',')
-        outputData.writerow(['Id', 'AcctId', 'OwnrAcctCcy', 'OwnrAcctIBAN', 'OwnrAcctNo', 'OwnrAcctBIC', 'OwnrAcctBankCode', 'BookgDt', 'ValDt', 'TxDt', 'Amt', 'AmtCcy', 'CdtDbtInd', 'EndToEndId', 'PmtInfId', 'MndtId', 'CdtrId', 'RmtInf', 'PurpCd', 'BookgTxt', 'PrimaNotaNo', 'BankRef', 'BkTxCd', 'RmtdNm', 'RmtdUltmtNm', 'RmtdAcctCtry', 'RmtdAcctIBAN', 'RmtdAcctNo', 'RmtdAcctBIC', 'RmtdAcctBankCode', 'BookgSts', 'BtchBookg', 'BtchId', 'GVC', 'GVCExtension', 'Category', 'Notes', 'ReadStatus', 'Flag'])
+        outputData.writerow(["Id", "AcctId", "OwnrAcctCcy", "OwnrAcctIBAN", "OwnrAcctNo", "OwnrAcctBIC", "OwnrAcctBankCode", "BookgDt", "ValDt", "TxDt", "Amt", "AmtCcy", "CdtDbtInd", "EndToEndId", "PmtInfId", "MndtId", "CdtrId", "RmtInf", "PurpCd", "BookgTxt", "PrimaNotaNo", "BankRef", "BkTxCd", "RmtdNm", "RmtdUltmtNm", "RmtdAcctCtry", "RmtdAcctIBAN", "RmtdAcctNo", "RmtdAcctBIC", "RmtdAcctBankCode", "BookgSts", "BtchBookg", "BtchId", "GVC", "GVCExtension", "Category", "Notes", "ReadStatus", "Flag"])
 
         bookings = 0
 
         for row in inputData:
             # convert booking date
-            BookDt = datetime.strptime(row[0], '%d.%m.%Y').strftime('%Y-%m-%d')
+            BookDt = datetime.strptime(row[0], "%d.%m.%Y").strftime("%Y-%m-%d")
             # convert value date
-            ValDt = datetime.strptime(row[1], '%d.%m.%Y').strftime('%Y-%m-%d')
+            ValDt = datetime.strptime(row[1], "%d.%m.%Y").strftime("%Y-%m-%d")
             # remove HTML markup
-            br = row[4].replace('<br />', ' ')
+            br = row[4].replace("<br />", " ")
             # convert value format
             Amt = row[7].replace(".","")
             Amt = Amt.replace(",",".")
