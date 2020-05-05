@@ -1,6 +1,25 @@
 # dkb2supa
-Convert DKB account CSV files to the SUPA CSV format
 
 This script converts CSV account reports from [Deutsche Kreditbank (DKB)](https://www.dkb.de) to
 [SUPA CSV](https://subsembly.com/supa.html) for [Banking4](https://subsembly.com/banking4.html)
  
+## How to run this script
+
+```
+./dkb2supa.py -h
+usage: dkb2supa.py [-h] -i INPUTFILE -o OUTPUTFILE [--iban DE820000000000]
+                   [--cur EUR]
+
+Convert DKB CSV into SUPA CSV.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUTFILE, --input INPUTFILE
+                        DKB CSV input file
+  -o OUTPUTFILE, --output OUTPUTFILE
+                        SUPA formated CSV output file
+  --iban DE820000000000
+                        Optionally your IBAN
+  --cur EUR             Optional Curreny. Default is EUR
+```
+
