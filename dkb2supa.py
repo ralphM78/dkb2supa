@@ -98,7 +98,7 @@ with args.input as CsvInputfile:
             RmtdNm = ' '.join(row[3].split())
             RmtInf = ' '.join(br.split())
 
-            outputData.writerow(["", "", cur, OwnrAcctIBAN, OwnrAcctNo, OwnrAcctBIC, OwnrAcctBankCode, BookDt, ValDt, "", Amt, cur, "", row[10], "", row[9], row[8], RmtInf, "", row[2], "", "", "", RmtdNm, "", "", row[5], "", row[6], "", "", "", "", "", "", "", "", "false", "None"])
+            outputData.writerow(["", "", cur, OwnrAcctIBAN, OwnrAcctNo, OwnrAcctBIC, OwnrAcctBankCode, BookDt, ValDt, "", Amt, cur, "", row[10].strip(), "", row[9].strip(), row[8].strip(), RmtInf, "", row[2], "", "", "", RmtdNm, "", "", row[5], "", row[6], "", "", "", "", "", "", "", "", "false", "None"])
             bookings +=1
 
 
