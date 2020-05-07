@@ -63,13 +63,15 @@ if args.cur:
 
 if OwnrAcctIBAN:
     OwnrAcctIBANformated = OwnrAcctIBAN.formatted
+    OwnrAcctBIC = str(OwnrAcctIBAN.bic)
     OwnrAcctBankCode = OwnrAcctIBAN.bank_code
-    OwnrAcctBIC = OwnrAcctIBAN.bic
     OwnrAcctNo = OwnrAcctIBAN.account_code
-    print ("\nUsed IBAN is:           ", OwnrAcctIBANformated)
-    print ("Used BIC is:            ", OwnrAcctBIC)
-    print ("Used Bankcode is:       ", OwnrAcctBankCode)
-    print ("Used account number is: ", OwnrAcctNo)
+
+    print ("")
+    print ("{0:<25s} {1:s}".format("Used IBAN is:", OwnrAcctIBANformated))
+    print ("{0:<25s} {1:s}".format("Used BIC is:", OwnrAcctBIC))
+    print ("{0:<25s} {1:s}".format("Used Bankcode is:", OwnrAcctBankCode))
+    print ("{0:<25s} {1:s}".format("Used account number is:", OwnrAcctNo))
 
 with args.input as CsvInputfile:
     inputData = csv.reader(CsvInputfile, delimiter=";", quotechar='"')
@@ -101,9 +103,11 @@ with args.input as CsvInputfile:
             outputData.writerow(["", "", cur, OwnrAcctIBAN, OwnrAcctNo, OwnrAcctBIC, OwnrAcctBankCode, BookDt, ValDt, "", Amt, cur, "", row[10].strip(), "", row[9].strip(), row[8].strip(), RmtInf, "", row[2], "", "", "", RmtdNm, "", "", row[5], "", row[6], "", "", "", "", "", "", "", "", "false", "None"])
             bookings +=1
 
+if not args.iban:
+    print ("")
 
-print ("Used currency:          ", cur)
-print ("Used input file:        ", os.path.dirname(os.path.realpath(__file__)) + '/' + args.input.name)
-print ("Used output file:       ", os.path.dirname(os.path.realpath(__file__)) + '/' + args.output.name)
-print ("Converted bookings:     ", bookings)
-print ('')
+print ("{0:<25s} {1:s}".format("Used currency:", cur))
+print ("{0:<25s} {1:s}".format("Used input file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.input.name))
+print ("{0:<25s} {1:s}".format("Used output file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.output.name))
+print ("{0:<25s} {1:d}".format("Converted bookings:", bookings))
+print ("")
