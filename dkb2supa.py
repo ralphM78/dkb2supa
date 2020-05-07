@@ -59,10 +59,11 @@ if args.iban:
 
 # check for currency length if passed
 if args.cur:
-    cur = args.cur.upper()
-    if len(cur) != 3:
+    if len(args.cur) != 3:
         print ("Currency can have a length of 3 chars only. EUR,USD,CHF ...")
         exit(1)
+    else:
+        cur = args.cur.upper()
 
 # convert IBAN if passed
 if OwnrAcctIBAN:
