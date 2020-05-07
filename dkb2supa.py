@@ -71,12 +71,6 @@ if OwnrAcctIBAN:
     OwnrAcctBankCode = OwnrAcctIBAN.bank_code
     OwnrAcctNo = OwnrAcctIBAN.account_code
 
-    print ("")
-    print ("{:<25s} {:s}".format("Used IBAN is:", OwnrAcctIBANformated))
-    print ("{:<25s} {:s}".format("Used BIC is:", OwnrAcctBIC))
-    print ("{:<25s} {:s}".format("Used Bankcode is:", OwnrAcctBankCode))
-    print ("{:<25s} {:s}".format("Used account number is:", OwnrAcctNo))
-
 with args.input as CsvInputfile:
     inputData = csv.reader(CsvInputfile, delimiter=";", quotechar='"')
 
@@ -112,8 +106,13 @@ with args.input as CsvInputfile:
                 # count converted lines
                 bookings +=1
 
-if not args.iban:
-    print ("")
+print ("")
+
+if args.iban:
+    print ("{:<25s} {:s}".format("Used IBAN is:", OwnrAcctIBANformated))
+    print ("{:<25s} {:s}".format("Used BIC is:", OwnrAcctBIC))
+    print ("{:<25s} {:s}".format("Used Bankcode is:", OwnrAcctBankCode))
+    print ("{:<25s} {:s}".format("Used account number is:", OwnrAcctNo))
 
 print ("{:<25s} {:s}".format("Used currency:", cur))
 print ("{:<25s} {:s}".format("Used input file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.input.name))
