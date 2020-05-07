@@ -57,7 +57,7 @@ if args.iban:
 
 if args.cur:
     cur = args.cur.upper()
-    if not len(cur) == 3:
+    if len(cur) != 3:
         print ("Currency can have a length of 3 chars only. EUR,USD,CHF ...")
         exit(1)
 
@@ -68,10 +68,10 @@ if OwnrAcctIBAN:
     OwnrAcctNo = OwnrAcctIBAN.account_code
 
     print ("")
-    print ("{0:<25s} {1:s}".format("Used IBAN is:", OwnrAcctIBANformated))
-    print ("{0:<25s} {1:s}".format("Used BIC is:", OwnrAcctBIC))
-    print ("{0:<25s} {1:s}".format("Used Bankcode is:", OwnrAcctBankCode))
-    print ("{0:<25s} {1:s}".format("Used account number is:", OwnrAcctNo))
+    print ("{:<25s} {:s}".format("Used IBAN is:", OwnrAcctIBANformated))
+    print ("{:<25s} {:s}".format("Used BIC is:", OwnrAcctBIC))
+    print ("{:<25s} {:s}".format("Used Bankcode is:", OwnrAcctBankCode))
+    print ("{:<25s} {:s}".format("Used account number is:", OwnrAcctNo))
 
 with args.input as CsvInputfile:
     inputData = csv.reader(CsvInputfile, delimiter=";", quotechar='"')
@@ -106,8 +106,8 @@ with args.input as CsvInputfile:
 if not args.iban:
     print ("")
 
-print ("{0:<25s} {1:s}".format("Used currency:", cur))
-print ("{0:<25s} {1:s}".format("Used input file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.input.name))
-print ("{0:<25s} {1:s}".format("Used output file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.output.name))
-print ("{0:<25s} {1:d}".format("Converted bookings:", bookings))
+print ("{:<25s} {:s}".format("Used currency:", cur))
+print ("{:<25s} {:s}".format("Used input file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.input.name))
+print ("{:<25s} {:s}".format("Used output file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.output.name))
+print ("{:<25s} {:d}".format("Converted bookings:", bookings))
 print ("")
