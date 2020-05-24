@@ -60,7 +60,7 @@ if args.iban:
 # check for currency length if passed
 if args.cur:
     if len(args.cur) != 3:
-        print ("Currency can have a length of 3 chars only. EUR,USD,CHF ...")
+        print("Currency can have a length of 3 chars only. EUR,USD,CHF ...")
         exit(1)
     else:
         cur = args.cur.upper()
@@ -97,26 +97,26 @@ with args.input as CsvInputfile:
                 # remove HTML markup
                 br = row[4].replace("<br />", " ")
                 # convert value format
-                Amt = row[7].replace(".","")
-                Amt = Amt.replace(",",".")
+                Amt = row[7].replace(".", "")
+                Amt = Amt.replace(",", ".")
                 # remove double spaces
                 RmtdNm = ' '.join(row[3].split())
                 RmtInf = ' '.join(br.split())
 
                 outputData.writerow(["", "", cur, OwnrAcctIBAN, OwnrAcctNo, OwnrAcctBIC, OwnrAcctBankCode, BookDt, ValDt, "", Amt, cur, "", row[10].strip(), "", row[9].strip(), row[8].strip(), RmtInf, "", row[2], "", "", "", RmtdNm, "", "", row[5], "", row[6], "", "", "", "", "", "", "", "", "false", "None"])
                 # count converted lines
-                bookings +=1
+                bookings += 1
 
-print ("")
+print("")
 
 if args.iban:
-    print ("{:<25s} {:s}".format("Used IBAN is:", OwnrAcctIBANformated))
-    print ("{:<25s} {:s}".format("Used BIC is:", OwnrAcctBIC))
-    print ("{:<25s} {:s}".format("Used Bankcode is:", OwnrAcctBankCode))
-    print ("{:<25s} {:s}".format("Used account number is:", OwnrAcctNo))
+    print("{:<25s} {:s}".format("Used IBAN is:", OwnrAcctIBANformated))
+    print("{:<25s} {:s}".format("Used BIC is:", OwnrAcctBIC))
+    print("{:<25s} {:s}".format("Used Bankcode is:", OwnrAcctBankCode))
+    print("{:<25s} {:s}".format("Used account number is:", OwnrAcctNo))
 
-print ("{:<25s} {:s}".format("Used currency:", cur))
-print ("{:<25s} {:s}".format("Used input file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.input.name))
-print ("{:<25s} {:s}".format("Used output file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.output.name))
-print ("{:<25s} {:d}".format("Converted bookings:", bookings))
-print ("")
+print("{:<25s} {:s}".format("Used currency:", cur))
+print("{:<25s} {:s}".format("Used input file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.input.name))
+print("{:<25s} {:s}".format("Used output file:", os.path.dirname(os.path.realpath(__file__)) + "/" + args.output.name))
+print("{:<25s} {:d}".format("Converted bookings:", bookings))
+print("")
